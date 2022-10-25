@@ -32,6 +32,7 @@ public static class Program
                 // .SetBasePath(Directory.GetCurrentDirectory())
                 .SetBasePath(pathToContentRoot)
                 //.AddYaml("conf/config.yml")
+                .AddJsonFile("config.json")
             ;
         return builder.Build();
     }
@@ -43,8 +44,10 @@ public static class Program
         var pathToFolder = Path.GetDirectoryName(pathToExe);
         var logger = NLogBuilder.ConfigureNLog(Path.Combine(pathToFolder, "conf", "nlog.config"))
             .GetCurrentClassLogger();
+        //var logger = NLogBuilder.ConfigureNLog("conf/nlog.config").GetCurrentClassLogger();
         var configuration = LoadConfiguration();
         logger.Info("Start");
+        configuration["paths:base"] = pathToFolder;
         try
         {
             var installer = new Installer(configuration, logger);

@@ -36,7 +36,7 @@ public class Installer
         {
             var services = new Dictionary<string, string>
             {
-                ["TestServiceInstallerNet6"] = Path.Combine(parameters_.Paths.Base, "TestServiceInstallerNet6", "install.bat"),
+                ["TestServiceInstallerNet6"] = Path.Combine(parameters_.Paths.Base, "install.bat"),
 
             };
             InstallServices(services);
